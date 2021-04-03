@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha '__tests__/*.test.js' --require esm"
   },
   "keywords": [],
   "author": "Vladimir Cutkovic <vladimir.cutkovic@gmail.com>",
@@ -27,5 +27,12 @@
   },
   "bugs": {
     "url": "https://github.com/vladamon/romanus-numerus/issues"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
+  },
+  "dependencies": {
+    "esm": "^3.2.25"
   }
 }
