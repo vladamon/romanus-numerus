@@ -4,6 +4,8 @@ import { red } from '@material-ui/core/colors';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useSelector } from 'react-redux';
+
 const useStyles = makeStyles((theme) => ({
 	avatar: {
 		backgroundColor: red[600],
@@ -21,6 +23,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Result = (props) => {
 	const classes = useStyles();
+
+	const inputValue = useSelector((state) => state.convertor.inputValue);
+	const convertedValue = useSelector((state) => state.convertor.convertedValue);
+
+	const getInputValue = () => {
+		return inputValue || 'Input value eg. MCM';
+	};
+
+	const getConvertedValue = () => {
+		return convertedValue || 'Converted value eg. 1900';
+	};
 
 	return (
 		<Card className={classes.cardItem} {...props}>
@@ -44,7 +57,7 @@ const Result = (props) => {
 				</Grid>
 				<Grid item>
 					<Typography color="textPrimary" variant="h3">
-						$24,000
+						{getInputValue()}
 					</Typography>
 				</Grid>
 				<Grid item>
@@ -54,7 +67,7 @@ const Result = (props) => {
 				</Grid>
 				<Grid item>
 					<Typography color="textPrimary" variant="h3">
-						$24,000
+						{getConvertedValue()}
 					</Typography>
 				</Grid>
 			</CardContent>

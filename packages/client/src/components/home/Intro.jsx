@@ -43,7 +43,11 @@ const Intro = ({ product, ...rest }) => {
 					{product.title}
 				</Typography> */}
 				<Typography align="center" color="textPrimary" variant="body1">
-					'Welcome to simple convertor for converting Roman numbers to Integers and vice-versa!'
+					Welcome to simple convertor for converting Roman numbers to Integers and vice-versa!
+				</Typography>
+				<Typography align="center" color="textPrimary" variant="body1">
+					This is only for learning purposes so we follow strict rules for representing roman numerals - this
+					means 3999 is the largest representable integer
 				</Typography>
 			</CardContent>
 			<Box sx={{ flexGrow: 1 }} />

@@ -8,6 +8,8 @@ const convertorReducer = (state = initialState, action) => {
 			return {
 				...state,
 				converting: true,
+				inputValue: action.payload,
+				convertedValue: '',
 			};
 		case types.convertRomanToIntegerError:
 		case types.convertIntegerToRomanError:
@@ -16,6 +18,7 @@ const convertorReducer = (state = initialState, action) => {
 				converting: false,
 				error: true,
 				errorMessage: action.payload,
+				convertedValue: '',
 			};
 		case types.convertIntegerToRomanSuccess:
 		case types.convertRomanToIntegerSuccess:

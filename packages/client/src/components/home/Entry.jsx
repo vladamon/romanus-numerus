@@ -1,14 +1,15 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Avatar, Card, CardContent, Grid, Typography, TextField } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
 import MoneyIcon from '@material-ui/icons/Money';
 import { green } from '@material-ui/core/colors';
 import SendIcon from '@material-ui/icons/Send';
-
 import { makeStyles } from '@material-ui/core/styles';
 
-import { isValidIntegerOrRoman } from '../../utils/convertor';
+import { detect, maxDigits } from '@romanus-numerus/romanus-aux/lib';
+import { convertRomanToInteger, convertIntegerToRoman } from '../../store/convertor/actions';
 
 const useStyles = makeStyles((theme) => ({
 	margin: {
@@ -49,6 +50,7 @@ const Entry = (props) => {
 	const [inputError, setInputError] = useState('');
 
 	const classes = useStyles();
+	const dispatch = useDispatch();
 
 	const onChange = (e) => {
 		setInputNumber(e.currentTarget.value);
@@ -64,14 +66,33 @@ const Entry = (props) => {
 			return;
 		}
 
-		if (!isValidIntegerOrRoman(inputNumber)) {
-			setInputError('Please enter valid number, either roman or decimal!');
-			return;
+		const numberType = detect(inputNumber);
+
+		if (numberType === 'undetected') {
+			setInputError('Please enter either valid roman numeral or integer!');
 		}
 
-		setInputError('')
+		if (numberType === 'integer') {
+			if (inputNumber > maxDigits.intValue) {
+				setInputError(
+					'Please enter some smaller number - 3999 is the maximum representable integer if you follow strict rules :)'
+				);
+			} else {
+				dispatch(convertIntegerToRoman(inputNumber));
+				setInputError('');
+			}
+		}
 
-		console.log(inputNumber);
+		if (numberType === 'roman') {
+			if (inputNumber.length > maxDigits.roman) {
+				setInputError(
+					'Please enter some smaller number - 9 letters is maximum for roman numbers in strict mode :)'
+				);
+			} else {
+				dispatch(convertRomanToInteger(inputNumber));
+				setInputError('');
+			}
+		}
 	};
 
 	return (

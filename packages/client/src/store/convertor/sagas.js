@@ -3,9 +3,9 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import * as types from './types';
 import { convertRomanToInteger, convertIntegerToRoman } from './../../api/convertor';
 
-function* convertRomanToIntegerSaga(arg) {
+function* convertRomanToIntegerSaga({ payload }) {
 	try {
-		const result = yield call(convertRomanToInteger, arg);
+		const result = yield call(convertRomanToInteger, payload);
 
 		yield put({
 			type: types.convertRomanToIntegerSuccess,
@@ -14,14 +14,14 @@ function* convertRomanToIntegerSaga(arg) {
 	} catch (ex) {
 		yield put({
 			type: types.convertRomanToIntegerError,
-			payload: ex,
+			payload: ex.message,
 		});
 	}
 }
 
-function* convertIntegerToRomanSaga(arg) {
+function* convertIntegerToRomanSaga({ payload }) {
 	try {
-		const result = yield call(convertIntegerToRoman, arg);
+		const result = yield call(convertIntegerToRoman, payload);
 
 		yield put({
 			type: types.convertIntegerToRomanSuccess,
@@ -30,7 +30,7 @@ function* convertIntegerToRomanSaga(arg) {
 	} catch (ex) {
 		yield put({
 			type: types.convertIntegerToRomanError,
-			payload: ex,
+			payload: ex.message,
 		});
 	}
 }

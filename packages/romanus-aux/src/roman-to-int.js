@@ -1,6 +1,6 @@
 import { intRomanMap, subtractFormatMap } from './numbers-map'
 import errors from './errors'
-import { isValidRoman, isValidInt } from './util';
+import { isValidRoman, isValidInt } from './validators';
 
 const romanToInt = (romanNumber) => {
   if (!isValidRoman(romanNumber)) {
