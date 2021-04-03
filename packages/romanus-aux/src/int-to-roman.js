@@ -1,10 +1,10 @@
 import { intRomanMap } from './numbers-map'
 import errors from './errors'
-import { romanNumberRegex, integerNumberRegex } from './util'
+import { isValidRoman, isValidInt } from './util';
 
 const intToRoman = (intNumber) => {
-  if (!integerNumberRegex.test(intNumber)) {
-    throw new Error(errors.wrongInput.expectedInteger)
+  if (!isValidInt(intNumber)) {
+		throw new Error(errors.wrongInput.expectedInteger);
   }
 
   const integersDescending = Object.keys(intRomanMap).sort((a, b) => b - a)
@@ -21,8 +21,8 @@ const intToRoman = (intNumber) => {
     }
   } while (tempInt > 0)
 
-  if (!romanNumberRegex.test(romanOutput)) {
-    throw new Error(errors.failedConverting.toRoman)
+  if (!isValidRoman(romanOutput)) {
+		throw new Error(errors.failedConverting.toRoman);
   }
 
   return romanOutput

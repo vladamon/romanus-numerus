@@ -1,10 +1,10 @@
 import { intRomanMap, subtractFormatMap } from './numbers-map'
 import errors from './errors'
-import { romanNumberRegex, integerNumberRegex } from './util'
+import { isValidRoman, isValidInt } from './util';
 
 const romanToInt = (romanNumber) => {
-  if (!romanNumberRegex.test(romanNumber)) {
-    throw new Error(errors.wrongInput.expectedRoman)
+  if (!isValidRoman(romanNumber)) {
+		throw new Error(errors.wrongInput.expectedRoman);
   }
 
   const romanIntegerMap = Object.entries(intRomanMap).reduce((acc, [int, roman]) => ({...acc, [roman]: int}), {})
@@ -26,8 +26,8 @@ const romanToInt = (romanNumber) => {
 
   const integerOutput = romanNumberDigits.reduce((acc, romanDigit) => acc + parseInt(romanIntegerMap[romanDigit], 10), 0)
 
-  if (!integerNumberRegex.test(integerOutput)) {
-    throw new Error(errors.failedConverting.toInteger)
+  if (!isValidInt(integerOutput)) {
+		throw new Error(errors.failedConverting.toInteger);
   }
 
   return integerOutput
