@@ -13,5 +13,3 @@ export const intRomanMap = {
   900: 'CM',
   1000: 'M'
 }
-
-

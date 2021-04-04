@@ -1,9 +1,9 @@
 const initialState = {
-	inputValue: '',
-	converting: false,
-	error: false,
-	errorMessage: '',
-	convertedValue: '',
-};
+  inputValue: '',
+  converting: false,
+  error: false,
+  errorMessage: '',
+  convertedValue: ''
+}
 
-export default initialState;
+export default initialState

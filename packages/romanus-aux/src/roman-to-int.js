@@ -15,7 +15,7 @@ const romanToInt = romanNumber => {
   const romanNumberDigits = []
 
   do {
-    let symbol = romanNumberLetters.shift()
+    const symbol = romanNumberLetters.shift()
 
     if (
       romanNumberLetters[0] &&

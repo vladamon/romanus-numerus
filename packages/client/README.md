@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Romanus Numerus App
+
+This is a small web app aimed to help children learn Roman numerals. It's supports simple functionality of converting Roman numerals to Integer numbers and vice-versa through a simple GUI
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Problem statement and the Project proposal
 
-In the project directory, you can run:
+This project is structured in a way that represents overengineering when compared to the Problem statement (small Roman numerals convertor)
 
-### `npm start`
+The structure of this project is more aimed to showcase how one mid-sized project could look like in terms of patterns, technologies and project organization.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Folder structure
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Folder structure is relatively simple, with dedicated folders for pages/view, layouts, components, api and store(state).
 
-### `npm test`
+Views contain only entry component, all other components are in respective folder in the components folder.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+There are layouts, integrated with routing but for this project it hasn't been utilized.
 
-### `npm run build`
+Store contains all the logic related to managing state with all the libs and middllewares, boilerplate and initialization code etc.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Folders with tests are kept close to their respective logic/components.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Design
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For the GUI part, Material UI is utilized. It's responsive out of the box. Nothing fancy here.
 
-### `npm run eject`
+### App logic and state management
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Function components are used, with hooks. For the state management, there is a Redux, along with Redux Saga
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+You've probably wondering why the hell Redux/Sagas. Well this could be easily written in one html file, with all the logic and styles in it (in the end it ends like this). But I wanted to showcase relatively simple yet meaningful project, with structure, patterns and technologies that can serve as a good starting point.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+For the conversion logic, the internal package is used. The packages are maintained with Lerna.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+There is some validation on the front-end side which should ensure smooth and safe user experience. If that fails (and it's not going to :) ), there is a strong validation on the lib side as well (actually validating logic is the same - it's using lib on the front side)
 
-## Learn More
+## Other points worth mentioning
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+There are some tests, mostly for the Redux where most of the logic is contained (testing actions and reducers).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Missing parts - things I would like to add or improve
 
-### Code Splitting
+I would like to add tests for sagas. It kind of fell outside of the scope of this project because it involves more setup and mocking - meaning more time.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+I would like to test components with Jest and Enzyme. But there are just a couple of them.
 
-### Analyzing the Bundle Size
+The project structure can be devised even further to support bigger projects and enable scaling.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I would add error handling on the front-end side when lib throws an exception. For now, user is safe, the app won't break but the user won't see anything meaningful, what the hell just happened.
