@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "redux-mock-store": "^1.5.4",
     "standard": "^16.0.3"
   }
 }
