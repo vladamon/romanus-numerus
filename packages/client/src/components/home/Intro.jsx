@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Avatar, Box, Card, CardContent, Typography } from '@material-ui/core';
 import { orange } from '@material-ui/core/colors';
 import MoneyIcon from '@material-ui/icons/Money';
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Intro = ({ product, ...rest }) => {
+const Intro = () => {
 	const classes = useStyles();
 
 	return (
@@ -31,7 +30,6 @@ const Intro = ({ product, ...rest }) => {
 				flexDirection: 'column',
 				height: '100%',
 			}}
-			{...rest}
 		>
 			<CardContent>
 				<Box className={classes.header}>
@@ -39,9 +37,6 @@ const Intro = ({ product, ...rest }) => {
 						<MoneyIcon />
 					</Avatar>
 				</Box>
-				{/* <Typography align="center" color="textPrimary" gutterBottom variant="h4">
-					{product.title}
-				</Typography> */}
 				<Typography align="center" color="textPrimary" variant="body1">
 					Welcome to simple convertor for converting Roman numbers to Integers and vice-versa!
 				</Typography>
@@ -53,10 +48,6 @@ const Intro = ({ product, ...rest }) => {
 			<Box sx={{ flexGrow: 1 }} />
 		</Card>
 	);
-};
-
-Intro.propTypes = {
-	product: PropTypes.object.isRequired,
 };
 
 export default Intro;

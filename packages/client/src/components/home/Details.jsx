@@ -1,7 +1,5 @@
-import PropTypes from 'prop-types';
-import { Avatar, Box, Card, CardContent, Typography } from '@material-ui/core';
+import { Box, Card, CardContent, Typography } from '@material-ui/core';
 import { orange } from '@material-ui/core/colors';
-import MoneyIcon from '@material-ui/icons/Money';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,15 +24,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Details = ({ product, ...rest }) => {
+const Details = () => {
 	const classes = useStyles();
 
 	return (
 		<Card className={classes.cardItem}>
 			<CardContent>
-				{/* <Typography align="center" color="textPrimary" gutterBottom variant="h4">
-					{product.title}
-				</Typography> */}
 				<Typography align="center" color="textPrimary" variant="body1">
 					Roman numeral, any of the symbols used in a system of numerical notation based on the ancient Roman
 					system. The symbols are I, V, X, L, C, D, and M, standing respectively for 1, 5, 10, 50, 100, 500,
@@ -47,10 +42,6 @@ const Details = ({ product, ...rest }) => {
 			<Box sx={{ flexGrow: 1 }} />
 		</Card>
 	);
-};
-
-Details.propTypes = {
-	product: PropTypes.object.isRequired,
 };
 
 export default Details;

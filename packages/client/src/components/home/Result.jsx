@@ -28,11 +28,11 @@ const Result = (props) => {
 	const convertedValue = useSelector((state) => state.convertor.convertedValue);
 
 	const getInputValue = () => {
-		return inputValue || 'Input value eg. MCM';
+		return inputValue || 'Input value i.e. MCM';
 	};
 
 	const getConvertedValue = () => {
-		return convertedValue || 'Converted value eg. 1900';
+		return convertedValue || 'Converted value i.e. 1900';
 	};
 
 	return (
