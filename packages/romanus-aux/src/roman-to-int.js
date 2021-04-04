@@ -1,22 +1,26 @@
-import { intRomanMap, subtractFormatMap } from './numbers-map'
+import { intRomanMap } from './numbers-map'
 import errors from './errors'
-import { isValidRoman, isValidInt } from './validators';
+import { isValidRoman, isValidInt } from './validators'
 
-const romanToInt = (romanNumber) => {
+const romanToInt = romanNumber => {
   if (!isValidRoman(romanNumber)) {
-		throw new Error(errors.wrongInput.expectedRoman);
+    throw new Error(errors.wrongInput.expectedRoman)
   }
 
-  const romanIntegerMap = Object.entries(intRomanMap).reduce((acc, [int, roman]) => ({...acc, [roman]: int}), {})
+  const romanIntegerMap = Object.entries(intRomanMap).reduce(
+    (acc, [int, roman]) => ({ ...acc, [roman]: int }),
+    {}
+  )
   const romanNumberLetters = romanNumber.split('')
   const romanNumberDigits = []
 
   do {
     let symbol = romanNumberLetters.shift()
 
-    if (subtractFormatMap[symbol] &&
+    if (
       romanNumberLetters[0] &&
-      Object.keys(subtractFormatMap[symbol]).includes(symbol.concat(romanNumberLetters[0]))) {
+      romanIntegerMap[symbol.concat(romanNumberLetters[0])]
+    ) {
       romanNumberDigits.push(symbol.concat(romanNumberLetters[0]))
       romanNumberLetters.shift()
     } else {
@@ -24,10 +28,13 @@ const romanToInt = (romanNumber) => {
     }
   } while (romanNumberLetters.length > 0)
 
-  const integerOutput = romanNumberDigits.reduce((acc, romanDigit) => acc + parseInt(romanIntegerMap[romanDigit], 10), 0)
+  const integerOutput = romanNumberDigits.reduce(
+    (acc, romanDigit) => acc + parseInt(romanIntegerMap[romanDigit], 10),
+    0
+  )
 
   if (!isValidInt(integerOutput)) {
-		throw new Error(errors.failedConverting.toInteger);
+    throw new Error(errors.failedConverting.toInteger)
   }
 
   return integerOutput
