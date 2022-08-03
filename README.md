@@ -11,6 +11,7 @@ Clone the repository and run this to install dependencies:
 ```javascript
 cd romanus-numerus
 
+NOTE: Please use Node v16 (not the latest version)
 npm install
 ```
 
